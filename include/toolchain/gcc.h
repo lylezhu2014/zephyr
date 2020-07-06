@@ -470,5 +470,13 @@ do {                                                                    \
 #define ENUM_UNPACKED __attribute__((__packed__))
 #endif
 
+#ifndef STRUCT_PACKED
+#define STRUCT_PACKED
+#endif
+
+#ifndef STRUCT_UNPACKED
+#define STRUCT_UNPACKED __attribute__((__packed__))
+#endif
+
 #endif /* !_LINKER */
 #endif /* ZEPHYR_INCLUDE_TOOLCHAIN_GCC_H_ */
