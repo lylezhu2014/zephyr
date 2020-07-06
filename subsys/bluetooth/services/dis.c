@@ -30,12 +30,12 @@
 #include "common/log.h"
 
 #if CONFIG_BT_GATT_DIS_PNP
-struct dis_pnp {
+STRUCT_PACKED struct dis_pnp {
 	uint8_t pnp_vid_src;
 	uint16_t pnp_vid;
 	uint16_t pnp_pid;
 	uint16_t pnp_ver;
-} __packed;
+} STRUCT_UNPACKED;
 
 static struct dis_pnp dis_pnp_id = {
 	.pnp_vid_src = CONFIG_BT_GATT_DIS_PNP_VID_SRC,

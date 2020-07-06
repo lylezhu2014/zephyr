@@ -139,12 +139,12 @@ BUILD_ASSERT((CONFIG_BT_PERIPHERAL_PREF_MIN_INT == 0xffff) ||
 static ssize_t read_ppcp(struct bt_conn *conn, const struct bt_gatt_attr *attr,
 			 void *buf, uint16_t len, uint16_t offset)
 {
-	struct __packed {
+	STRUCT_PACKED struct {
 		uint16_t min_int;
 		uint16_t max_int;
 		uint16_t latency;
 		uint16_t timeout;
-	} ppcp;
+	} STRUCT_UNPACKED ppcp;
 
 	ppcp.min_int = sys_cpu_to_le16(CONFIG_BT_PERIPHERAL_PREF_MIN_INT);
 	ppcp.max_int = sys_cpu_to_le16(CONFIG_BT_PERIPHERAL_PREF_MAX_INT);
@@ -193,10 +193,10 @@ BT_GATT_SERVICE_DEFINE(_2_gap_svc,
 #endif
 );
 
-struct sc_data {
+STRUCT_PACKED struct sc_data {
 	uint16_t start;
 	uint16_t end;
-} __packed;
+} STRUCT_UNPACKED;
 
 struct gatt_sc_cfg {
 	uint8_t		id;
@@ -1177,11 +1177,11 @@ ssize_t bt_gatt_attr_read_service(struct bt_conn *conn,
 				 BT_UUID_128(uuid)->val, 16);
 }
 
-struct gatt_incl {
+STRUCT_PACKED struct gatt_incl {
 	uint16_t start_handle;
 	uint16_t end_handle;
 	uint16_t uuid16;
-} __packed;
+} STRUCT_UNPACKED;
 
 static uint8_t get_service_handles(const struct bt_gatt_attr *attr,
 				   void *user_data)
@@ -1244,14 +1244,14 @@ ssize_t bt_gatt_attr_read_included(struct bt_conn *conn,
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &pdu, value_len);
 }
 
-struct gatt_chrc {
+STRUCT_PACKED struct gatt_chrc {
 	uint8_t properties;
 	uint16_t value_handle;
 	union {
 		uint16_t uuid16;
 		uint8_t  uuid[16];
 	};
-} __packed;
+} STRUCT_UNPACKED;
 
 uint16_t bt_gatt_attr_value_handle(const struct bt_gatt_attr *attr)
 {

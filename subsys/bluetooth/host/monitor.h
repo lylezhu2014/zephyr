@@ -47,31 +47,31 @@
 #define BT_MONITOR_EXT_HDR_MAX 15
 #endif
 
-struct bt_monitor_hdr {
+STRUCT_PACKED struct bt_monitor_hdr {
 	uint16_t  data_len;
 	uint16_t  opcode;
 	uint8_t   flags;
 	uint8_t   hdr_len;
 
 	uint8_t   ext[BT_MONITOR_EXT_HDR_MAX];
-} __packed;
+} STRUCT_UNPACKED;
 
-struct bt_monitor_ts32 {
+STRUCT_PACKED struct bt_monitor_ts32 {
 	uint8_t   type;
 	uint32_t  ts32;
-} __packed;
+} STRUCT_UNPACKED;
 
-struct bt_monitor_new_index {
+STRUCT_PACKED struct bt_monitor_new_index {
 	uint8_t  type;
 	uint8_t  bus;
 	uint8_t  bdaddr[6];
 	char  name[8];
-} __packed;
+} STRUCT_UNPACKED;
 
-struct bt_monitor_user_logging {
+STRUCT_PACKED struct bt_monitor_user_logging {
 	uint8_t  priority;
 	uint8_t  ident_len;
-} __packed;
+} STRUCT_UNPACKED;
 
 static inline uint8_t bt_monitor_opcode(struct net_buf *buf)
 {

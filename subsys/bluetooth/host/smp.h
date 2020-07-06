@@ -9,9 +9,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-struct bt_smp_hdr {
+STRUCT_PACKED struct bt_smp_hdr {
 	uint8_t  code;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_ERR_PASSKEY_ENTRY_FAILED		0x01
 #define BT_SMP_ERR_OOB_NOT_AVAIL		0x02
@@ -57,71 +57,71 @@ struct bt_smp_hdr {
 
 #define BT_SMP_CMD_PAIRING_REQ			0x01
 #define BT_SMP_CMD_PAIRING_RSP			0x02
-struct bt_smp_pairing {
+STRUCT_PACKED struct bt_smp_pairing {
 	uint8_t  io_capability;
 	uint8_t  oob_flag;
 	uint8_t  auth_req;
 	uint8_t  max_key_size;
 	uint8_t  init_key_dist;
 	uint8_t  resp_key_dist;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_PAIRING_CONFIRM		0x03
-struct bt_smp_pairing_confirm {
+STRUCT_PACKED struct bt_smp_pairing_confirm {
 	uint8_t  val[16];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_PAIRING_RANDOM		0x04
-struct bt_smp_pairing_random {
+STRUCT_PACKED struct bt_smp_pairing_random {
 	uint8_t  val[16];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_PAIRING_FAIL			0x05
-struct bt_smp_pairing_fail {
+STRUCT_PACKED struct bt_smp_pairing_fail {
 	uint8_t  reason;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_ENCRYPT_INFO			0x06
-struct bt_smp_encrypt_info {
+STRUCT_PACKED struct bt_smp_encrypt_info {
 	uint8_t  ltk[16];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_MASTER_IDENT			0x07
-struct bt_smp_master_ident {
+STRUCT_PACKED struct bt_smp_master_ident {
 	uint8_t ediv[2];
 	uint8_t rand[8];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_IDENT_INFO			0x08
-struct bt_smp_ident_info {
+STRUCT_PACKED struct bt_smp_ident_info {
 	uint8_t  irk[16];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_IDENT_ADDR_INFO		0x09
-struct bt_smp_ident_addr_info {
+STRUCT_PACKED struct bt_smp_ident_addr_info {
 	bt_addr_le_t addr;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_SIGNING_INFO			0x0a
-struct bt_smp_signing_info {
+STRUCT_PACKED struct bt_smp_signing_info {
 	uint8_t csrk[16];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_SECURITY_REQUEST		0x0b
-struct bt_smp_security_request {
+STRUCT_PACKED struct bt_smp_security_request {
 	uint8_t  auth_req;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_CMD_PUBLIC_KEY			0x0c
-struct bt_smp_public_key {
+STRUCT_PACKED struct bt_smp_public_key {
 	uint8_t x[32];
 	uint8_t y[32];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_SMP_DHKEY_CHECK			0x0d
-struct bt_smp_dhkey_check {
+STRUCT_PACKED struct bt_smp_dhkey_check {
 	uint8_t e[16];
-} __packed;
+} STRUCT_UNPACKED;
 
 int bt_smp_start_security(struct bt_conn *conn);
 bool bt_smp_request_ltk(struct bt_conn *conn, uint64_t rand, uint16_t ediv,

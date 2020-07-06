@@ -23,37 +23,37 @@ enum l2cap_conn_list_action {
 
 #define BT_L2CAP_PSM_RFCOMM             0x0003
 
-struct bt_l2cap_hdr {
+STRUCT_PACKED struct bt_l2cap_hdr {
 	uint16_t len;
 	uint16_t cid;
-} __packed;
+} STRUCT_UNPACKED;
 
-struct bt_l2cap_sig_hdr {
+STRUCT_PACKED struct bt_l2cap_sig_hdr {
 	uint8_t  code;
 	uint8_t  ident;
 	uint16_t len;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_REJ_NOT_UNDERSTOOD     0x0000
 #define BT_L2CAP_REJ_MTU_EXCEEDED       0x0001
 #define BT_L2CAP_REJ_INVALID_CID        0x0002
 
 #define BT_L2CAP_CMD_REJECT             0x01
-struct bt_l2cap_cmd_reject {
+STRUCT_PACKED struct bt_l2cap_cmd_reject {
 	uint16_t reason;
 	uint8_t  data[0];
-} __packed;
+} STRUCT_UNPACKED;
 
-struct bt_l2cap_cmd_reject_cid_data {
+STRUCT_PACKED struct bt_l2cap_cmd_reject_cid_data {
 	uint16_t scid;
 	uint16_t dcid;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_CONN_REQ               0x02
-struct bt_l2cap_conn_req {
+STRUCT_PACKED struct bt_l2cap_conn_req {
 	uint16_t psm;
 	uint16_t scid;
-} __packed;
+} STRUCT_UNPACKED;
 
 /* command statuses in reposnse */
 #define BT_L2CAP_CS_NO_INFO             0x0000
@@ -69,31 +69,31 @@ struct bt_l2cap_conn_req {
 #define BT_L2CAP_BR_ERR_SCID_IN_USE     0x0007
 
 #define BT_L2CAP_CONN_RSP               0x03
-struct bt_l2cap_conn_rsp {
+STRUCT_PACKED struct bt_l2cap_conn_rsp {
 	uint16_t dcid;
 	uint16_t scid;
 	uint16_t result;
 	uint16_t status;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_CONF_SUCCESS           0x0000
 #define BT_L2CAP_CONF_UNACCEPT          0x0001
 #define BT_L2CAP_CONF_REJECT            0x0002
 
 #define BT_L2CAP_CONF_REQ               0x04
-struct bt_l2cap_conf_req {
+STRUCT_PACKED struct bt_l2cap_conf_req {
 	uint16_t dcid;
 	uint16_t flags;
 	uint8_t  data[0];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_CONF_RSP               0x05
-struct bt_l2cap_conf_rsp {
+STRUCT_PACKED struct bt_l2cap_conf_rsp {
 	uint16_t scid;
 	uint16_t flags;
 	uint16_t result;
 	uint8_t  data[0];
-} __packed;
+} STRUCT_UNPACKED;
 
 /* Option type used by MTU config request data */
 #define BT_L2CAP_CONF_OPT_MTU           0x01
@@ -101,67 +101,67 @@ struct bt_l2cap_conf_rsp {
 #define BT_L2CAP_CONF_HINT              0x80
 #define BT_L2CAP_CONF_MASK              0x7f
 
-struct bt_l2cap_conf_opt {
+STRUCT_PACKED struct bt_l2cap_conf_opt {
 	uint8_t type;
 	uint8_t len;
 	uint8_t data[0];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_DISCONN_REQ            0x06
-struct bt_l2cap_disconn_req {
+STRUCT_PACKED struct bt_l2cap_disconn_req {
 	uint16_t dcid;
 	uint16_t scid;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_DISCONN_RSP            0x07
-struct bt_l2cap_disconn_rsp {
+STRUCT_PACKED struct bt_l2cap_disconn_rsp {
 	uint16_t dcid;
 	uint16_t scid;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_INFO_FEAT_MASK         0x0002
 #define BT_L2CAP_INFO_FIXED_CHAN        0x0003
 
 #define BT_L2CAP_INFO_REQ               0x0a
-struct bt_l2cap_info_req {
+STRUCT_PACKED struct bt_l2cap_info_req {
 	uint16_t type;
-} __packed;
+} STRUCT_UNPACKED;
 
 /* info result */
 #define BT_L2CAP_INFO_SUCCESS           0x0000
 #define BT_L2CAP_INFO_NOTSUPP           0x0001
 
 #define BT_L2CAP_INFO_RSP               0x0b
-struct bt_l2cap_info_rsp {
+STRUCT_PACKED struct bt_l2cap_info_rsp {
 	uint16_t type;
 	uint16_t result;
 	uint8_t  data[0];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_CONN_PARAM_REQ         0x12
-struct bt_l2cap_conn_param_req {
+STRUCT_PACKED struct bt_l2cap_conn_param_req {
 	uint16_t min_interval;
 	uint16_t max_interval;
 	uint16_t latency;
 	uint16_t timeout;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_CONN_PARAM_ACCEPTED    0x0000
 #define BT_L2CAP_CONN_PARAM_REJECTED    0x0001
 
 #define BT_L2CAP_CONN_PARAM_RSP         0x13
-struct bt_l2cap_conn_param_rsp {
+STRUCT_PACKED struct bt_l2cap_conn_param_rsp {
 	uint16_t result;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_LE_CONN_REQ            0x14
-struct bt_l2cap_le_conn_req {
+STRUCT_PACKED struct bt_l2cap_le_conn_req {
 	uint16_t psm;
 	uint16_t scid;
 	uint16_t mtu;
 	uint16_t mps;
 	uint16_t credits;
-} __packed;
+} STRUCT_UNPACKED;
 
 /* valid results in conn response on LE */
 #define BT_L2CAP_LE_SUCCESS             0x0000
@@ -177,53 +177,53 @@ struct bt_l2cap_le_conn_req {
 #define BT_L2CAP_LE_ERR_INVALID_PARAMS  0x000C
 
 #define BT_L2CAP_LE_CONN_RSP            0x15
-struct bt_l2cap_le_conn_rsp {
+STRUCT_PACKED struct bt_l2cap_le_conn_rsp {
 	uint16_t dcid;
 	uint16_t mtu;
 	uint16_t mps;
 	uint16_t credits;
 	uint16_t result;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_LE_CREDITS             0x16
-struct bt_l2cap_le_credits {
+STRUCT_PACKED struct bt_l2cap_le_credits {
 	uint16_t cid;
 	uint16_t credits;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_ECRED_CONN_REQ         0x17
-struct bt_l2cap_ecred_conn_req {
+STRUCT_PACKED struct bt_l2cap_ecred_conn_req {
 	uint16_t psm;
 	uint16_t mtu;
 	uint16_t mps;
 	uint16_t credits;
 	uint16_t scid[0];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_ECRED_CONN_RSP         0x18
-struct bt_l2cap_ecred_conn_rsp {
+STRUCT_PACKED struct bt_l2cap_ecred_conn_rsp {
 	uint16_t mtu;
 	uint16_t mps;
 	uint16_t credits;
 	uint16_t result;
 	uint16_t dcid[0];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_ECRED_RECONF_REQ       0x19
-struct bt_l2cap_ecred_reconf_req {
+STRUCT_PACKED struct bt_l2cap_ecred_reconf_req {
 	uint16_t mtu;
 	uint16_t mps;
 	uint16_t scid[0];
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_RECONF_SUCCESS         0x0000
 #define BT_L2CAP_RECONF_INVALID_MTU     0x0001
 #define BT_L2CAP_RECONF_INVALID_MPS     0x0002
 
 #define BT_L2CAP_ECRED_RECONF_RSP       0x1a
-struct bt_l2cap_ecred_reconf_rsp {
+STRUCT_PACKED struct bt_l2cap_ecred_reconf_rsp {
 	uint16_t result;
-} __packed;
+} STRUCT_UNPACKED;
 
 #define BT_L2CAP_SDU_HDR_LEN            2
 
