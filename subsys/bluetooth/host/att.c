@@ -42,7 +42,7 @@
 #define ATT_CHAN_MAX				1
 #endif /* CONFIG_BT_EATT */
 
-enum att_type {
+ENUM_PACKED_PRE enum att_type {
 		ATT_COMMAND,
 		ATT_REQUEST,
 		ATT_RESPONSE,
@@ -50,7 +50,7 @@ enum att_type {
 		ATT_CONFIRMATION,
 		ATT_INDICATION,
 		ATT_UNKNOWN,
-} __packed;
+} ENUM_PACKED_POST;
 
 static enum att_type att_op_get_type(uint8_t op);
 

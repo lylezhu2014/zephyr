@@ -66,10 +66,10 @@ struct bt_rfcomm_dlc_ops {
 
 /** @brief Role of RFCOMM session and dlc. Used only by internal APIs
  */
-enum bt_rfcomm_role {
+ENUM_PACKED_PRE enum bt_rfcomm_role {
 	BT_RFCOMM_ROLE_ACCEPTOR,
 	BT_RFCOMM_ROLE_INITIATOR
-} __packed;
+} ENUM_PACKED_POST;
 
 /** @brief RFCOMM DLC structure. */
 struct bt_rfcomm_dlc {
