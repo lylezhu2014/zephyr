@@ -43,23 +43,23 @@ enum {
 	BT_RFCOMM_STATE_DISCONNECTED,
 };
 
-struct bt_rfcomm_hdr {
+STRUCT_PACKED_PRE struct bt_rfcomm_hdr {
 	uint8_t address;
 	uint8_t control;
 	uint8_t length;
-} __packed;
+} STRUCT_PACKED_POST;
 
 #define BT_RFCOMM_SABM  0x2f
 #define BT_RFCOMM_UA    0x63
 #define BT_RFCOMM_UIH   0xef
 
-struct bt_rfcomm_msg_hdr {
+STRUCT_PACKED_PRE struct bt_rfcomm_msg_hdr {
 	uint8_t type;
 	uint8_t len;
-} __packed;
+} STRUCT_PACKED_POST;
 
 #define BT_RFCOMM_PN    0x20
-struct bt_rfcomm_pn {
+STRUCT_PACKED_PRE struct bt_rfcomm_pn {
 	uint8_t  dlci;
 	uint8_t  flow_ctrl;
 	uint8_t  priority;
@@ -67,25 +67,25 @@ struct bt_rfcomm_pn {
 	uint16_t mtu;
 	uint8_t  max_retrans;
 	uint8_t  credits;
-} __packed;
+} STRUCT_PACKED_POST;
 
 #define BT_RFCOMM_MSC    0x38
-struct bt_rfcomm_msc {
+STRUCT_PACKED_PRE struct bt_rfcomm_msc {
 	uint8_t  dlci;
 	uint8_t  v24_signal;
-} __packed;
+} STRUCT_PACKED_POST;
 
 #define BT_RFCOMM_DISC  0x43
 #define BT_RFCOMM_DM    0x0f
 
 #define BT_RFCOMM_RLS   0x14
-struct bt_rfcomm_rls {
+STRUCT_PACKED_PRE struct bt_rfcomm_rls {
 	uint8_t  dlci;
 	uint8_t  line_status;
-} __packed;
+} STRUCT_PACKED_POST;
 
 #define BT_RFCOMM_RPN   0x24
-struct bt_rfcomm_rpn {
+STRUCT_PACKED_PRE struct bt_rfcomm_rpn {
 	uint8_t  dlci;
 	uint8_t  baud_rate;
 	uint8_t  line_settings;
@@ -93,7 +93,7 @@ struct bt_rfcomm_rpn {
 	uint8_t  xon_char;
 	uint8_t  xoff_char;
 	uint16_t param_mask;
-} __packed;
+} STRUCT_PACKED_POST;
 
 #define BT_RFCOMM_TEST  0x08
 #define BT_RFCOMM_NSC   0x04

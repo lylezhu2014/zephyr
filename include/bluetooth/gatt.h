@@ -282,7 +282,7 @@ struct bt_gatt_ccc {
 };
 
 /** @brief GATT Characteristic Presentation Format Attribute Value. */
-struct bt_gatt_cpf {
+STRUCT_PACKED_PRE struct bt_gatt_cpf {
 	/** Format of the value of the characteristic */
 	uint8_t format;
 	/** Exponent field to determine how the value of this characteristic is
@@ -295,7 +295,7 @@ struct bt_gatt_cpf {
 	uint8_t name_space;
 	/** Description of the characteristic as defined in a higher layer profile */
 	uint16_t description;
-} __packed;
+} STRUCT_PACKED_POST;
 
 /**
  * @defgroup bt_gatt_server GATT Server APIs

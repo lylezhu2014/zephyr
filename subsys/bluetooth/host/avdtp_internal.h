@@ -100,10 +100,10 @@ struct bt_avdtp_req {
 	struct k_delayed_work timeout_work;
 };
 
-struct bt_avdtp_single_sig_hdr {
+STRUCT_PACKED_PRE struct bt_avdtp_single_sig_hdr {
 	uint8_t hdr;
 	uint8_t signal_id;
-} __packed;
+} STRUCT_PACKED_POST;
 
 #define BT_AVDTP_SIG_HDR_LEN sizeof(struct bt_avdtp_single_sig_hdr)
 
