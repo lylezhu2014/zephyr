@@ -275,17 +275,17 @@ void bt_l2cap_chan_remove(struct bt_conn *conn, struct bt_l2cap_chan *chan);
 /* Delete channel */
 void bt_l2cap_chan_del(struct bt_l2cap_chan *chan);
 
-const char *bt_l2cap_chan_state_str(bt_l2cap_chan_state_t state);
+const char *bt_l2cap_chan_state_str(enum bt_l2cap_chan_state state);
 
 #if defined(CONFIG_BT_DEBUG_L2CAP)
 void bt_l2cap_chan_set_state_debug(struct bt_l2cap_chan *chan,
-				   bt_l2cap_chan_state_t state,
+				   enum bt_l2cap_chan_state state,
 				   const char *func, int line);
 #define bt_l2cap_chan_set_state(_chan, _state) \
 	bt_l2cap_chan_set_state_debug(_chan, _state, __func__, __LINE__)
 #else
 void bt_l2cap_chan_set_state(struct bt_l2cap_chan *chan,
-			     bt_l2cap_chan_state_t state);
+			     enum bt_l2cap_chan_state state);
 #endif /* CONFIG_BT_DEBUG_L2CAP */
 
 /*

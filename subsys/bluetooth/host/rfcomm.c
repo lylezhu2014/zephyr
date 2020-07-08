@@ -435,7 +435,7 @@ static void rfcomm_dlc_rtx_timeout(struct k_work *work)
 static void rfcomm_dlc_init(struct bt_rfcomm_dlc *dlc,
 			    struct bt_rfcomm_session *session,
 			    uint8_t dlci,
-			    bt_rfcomm_role_t role)
+			    enum bt_rfcomm_role role)
 {
 	BT_DBG("dlc %p", dlc);
 
@@ -1562,7 +1562,7 @@ static void rfcomm_session_rtx_timeout(struct k_work *work)
 	}
 }
 
-static struct bt_rfcomm_session *rfcomm_session_new(bt_rfcomm_role_t role)
+static struct bt_rfcomm_session *rfcomm_session_new(enum bt_rfcomm_role role)
 {
 	int i;
 	static const struct bt_l2cap_chan_ops ops = {

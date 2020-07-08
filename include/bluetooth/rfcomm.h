@@ -66,10 +66,10 @@ struct bt_rfcomm_dlc_ops {
 
 /** @brief Role of RFCOMM session and dlc. Used only by internal APIs
  */
-typedef enum bt_rfcomm_role {
+enum bt_rfcomm_role {
 	BT_RFCOMM_ROLE_ACCEPTOR,
 	BT_RFCOMM_ROLE_INITIATOR
-} __packed bt_rfcomm_role_t;
+} __packed;
 
 /** @brief RFCOMM DLC structure. */
 struct bt_rfcomm_dlc {
@@ -86,8 +86,8 @@ struct bt_rfcomm_dlc {
 	struct bt_rfcomm_dlc_ops  *ops;
 	struct bt_rfcomm_dlc      *_next;
 
-	bt_security_t              required_sec_level;
-	bt_rfcomm_role_t           role;
+	enum bt_security              required_sec_level;
+	enum bt_rfcomm_role           role;
 
 	uint16_t                      mtu;
 	uint8_t                       dlci;

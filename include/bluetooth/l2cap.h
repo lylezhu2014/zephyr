@@ -56,7 +56,7 @@ typedef void (*bt_l2cap_chan_destroy_t)(struct bt_l2cap_chan *chan);
  *  Used only by internal APIs dealing with setting channel to proper state
  *  depending on operational context.
  */
-typedef enum bt_l2cap_chan_state {
+enum bt_l2cap_chan_state {
 	/** Channel disconnected */
 	BT_L2CAP_DISCONNECTED,
 	/** Channel in connecting state */
@@ -68,10 +68,10 @@ typedef enum bt_l2cap_chan_state {
 	/** Channel in disconnecting state */
 	BT_L2CAP_DISCONNECT,
 
-} __packed bt_l2cap_chan_state_t;
+} __packed;
 
 /** @brief Status of L2CAP channel. */
-typedef enum bt_l2cap_chan_status {
+enum bt_l2cap_chan_status {
 	/** Channel output status */
 	BT_L2CAP_STATUS_OUT,
 
@@ -87,7 +87,7 @@ typedef enum bt_l2cap_chan_status {
 
 	/* Total number of status - must be at the end of the enum */
 	BT_L2CAP_NUM_STATUS,
-} __packed bt_l2cap_chan_status_t;
+} __packed;
 
 /** @brief L2CAP Channel structure. */
 struct bt_l2cap_chan {
@@ -102,12 +102,12 @@ struct bt_l2cap_chan {
 	ATOMIC_DEFINE(status, BT_L2CAP_NUM_STATUS);
 
 #if defined(CONFIG_BT_L2CAP_DYNAMIC_CHANNEL)
-	bt_l2cap_chan_state_t		state;
+	enum bt_l2cap_chan_state		state;
 	/** Remote PSM to be connected */
 	uint16_t				psm;
 	/** Helps match request context during CoC */
 	uint8_t				ident;
-	bt_security_t			required_sec_level;
+	enum bt_security			required_sec_level;
 #endif /* CONFIG_BT_L2CAP_DYNAMIC_CHANNEL */
 };
 
@@ -292,7 +292,7 @@ struct bt_l2cap_server {
 	uint16_t			psm;
 
 	/** Required minimim security level */
-	bt_security_t		sec_level;
+	enum bt_security		sec_level;
 
 	/** @brief Server accept callback
 	 *
