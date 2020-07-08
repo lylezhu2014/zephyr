@@ -663,7 +663,7 @@ struct bt_conn *bt_conn_create_slave_le(const bt_addr_le_t *peer,
 }
 
 /** Security level. */
-typedef enum __packed {
+enum bt_security {
 	/** Level 0: Only for BR/EDR special cases, like SDP */
 	BT_SECURITY_L0,
 	/** Level 1: No encryption and no authentication. */
@@ -685,7 +685,7 @@ typedef enum __packed {
 	 *  security level.
 	 */
 	BT_SECURITY_FORCE_PAIR = BIT(7),
-} bt_security_t;
+} __packed;
 
 /** @brief Set security level for a connection.
  *
@@ -710,16 +710,16 @@ typedef enum __packed {
  *
  *  @return 0 on success or negative error
  */
-int bt_conn_set_security(struct bt_conn *conn, bt_security_t sec);
+int bt_conn_set_security(struct bt_conn *conn, enum bt_security sec);
 
 /** @brief Get security level for a connection.
  *
  *  @return Connection security level
  */
-bt_security_t bt_conn_get_security(struct bt_conn *conn);
+enum bt_security bt_conn_get_security(struct bt_conn *conn);
 
 static inline int __deprecated bt_conn_security(struct bt_conn *conn,
-						bt_security_t sec)
+						enum bt_security sec)
 {
 	return bt_conn_set_security(conn, sec);
 }
@@ -875,7 +875,7 @@ struct bt_conn_cb {
 	 *  @param level New security level of the connection.
 	 *  @param err Security error. Zero for success, non-zero otherwise.
 	 */
-	void (*security_changed)(struct bt_conn *conn, bt_security_t level,
+	void (*security_changed)(struct bt_conn *conn, enum bt_security level,
 				 enum bt_security_err err);
 #endif /* defined(CONFIG_BT_SMP) || defined(CONFIG_BT_BREDR) */
 

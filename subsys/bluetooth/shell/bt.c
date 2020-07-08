@@ -294,7 +294,7 @@ static void identity_resolved(struct bt_conn *conn, const bt_addr_le_t *rpa,
 #endif
 
 #if defined(CONFIG_BT_SMP) || defined(CONFIG_BT_BREDR)
-static void security_changed(struct bt_conn *conn, bt_security_t level,
+static void security_changed(struct bt_conn *conn, enum bt_security level,
 			     enum bt_security_err err)
 {
 	char addr[BT_ADDR_LE_STR_LEN];

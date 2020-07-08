@@ -2219,7 +2219,7 @@ static void sc_restore(struct bt_conn *conn)
 
 struct conn_data {
 	struct bt_conn *conn;
-	bt_security_t sec;
+	enum bt_security sec;
 };
 
 static uint8_t update_ccc(const struct bt_gatt_attr *attr, void *user_data)
@@ -2249,7 +2249,7 @@ static uint8_t update_ccc(const struct bt_gatt_attr *attr, void *user_data)
 		/* Check if attribute requires encryption/authentication */
 		err = bt_gatt_check_perm(conn, attr, BT_GATT_PERM_WRITE_MASK);
 		if (err) {
-			bt_security_t sec;
+			enum bt_security sec;
 
 			if (err == BT_ATT_ERR_WRITE_NOT_PERMITTED) {
 				BT_WARN("CCC %p not writable", attr);

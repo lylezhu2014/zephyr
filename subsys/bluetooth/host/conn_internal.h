@@ -7,7 +7,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-typedef enum __packed {
+enum bt_conn_state {
 	BT_CONN_DISCONNECTED,
 	BT_CONN_DISCONNECT_COMPLETE,
 	BT_CONN_CONNECT_SCAN,
@@ -17,7 +17,7 @@ typedef enum __packed {
 	BT_CONN_CONNECT,
 	BT_CONN_CONNECTED,
 	BT_CONN_DISCONNECT,
-} bt_conn_state_t;
+} __packed;
 
 /* bt_conn flags: the flags defined here represent connection parameters */
 enum {
@@ -116,15 +116,15 @@ struct bt_conn {
 	uint8_t                    id;
 
 #if defined(CONFIG_BT_SMP) || defined(CONFIG_BT_BREDR)
-	bt_security_t		sec_level;
-	bt_security_t		required_sec_level;
+	enum bt_security		sec_level;
+	enum bt_security		required_sec_level;
 	uint8_t			encrypt;
 #endif /* CONFIG_BT_SMP || CONFIG_BT_BREDR */
 
 	/* Connection error or reason for disconnect */
 	uint8_t			err;
 
-	bt_conn_state_t		state;
+	enum bt_conn_state		state;
 
 	uint16_t		        rx_len;
 	struct net_buf		*rx;
@@ -235,10 +235,10 @@ struct bt_conn *bt_conn_lookup_index(uint8_t index);
  * with the specific state
  */
 struct bt_conn *bt_conn_lookup_state_le(uint8_t id, const bt_addr_le_t *peer,
-					const bt_conn_state_t state);
+					const enum bt_conn_state state);
 
 /* Set connection object in certain state and perform action related to state */
-void bt_conn_set_state(struct bt_conn *conn, bt_conn_state_t state);
+void bt_conn_set_state(struct bt_conn *conn, enum bt_conn_state state);
 
 int bt_conn_le_conn_update(struct bt_conn *conn,
 			   const struct bt_le_conn_param *param);

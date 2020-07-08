@@ -42,7 +42,7 @@
 #define ATT_CHAN_MAX				1
 #endif /* CONFIG_BT_EATT */
 
-typedef enum __packed {
+enum att_type {
 		ATT_COMMAND,
 		ATT_REQUEST,
 		ATT_RESPONSE,
@@ -50,9 +50,9 @@ typedef enum __packed {
 		ATT_CONFIRMATION,
 		ATT_INDICATION,
 		ATT_UNKNOWN,
-} att_type_t;
+} __packed;
 
-static att_type_t att_op_get_type(uint8_t op);
+static enum att_type att_op_get_type(uint8_t op);
 
 #if CONFIG_BT_ATT_PREPARE_COUNT > 0
 struct bt_attr_data {
@@ -1953,7 +1953,7 @@ static uint8_t att_signed_write_cmd(struct bt_att_chan *chan, struct net_buf *bu
 #if defined(CONFIG_BT_SMP)
 static int att_change_security(struct bt_conn *conn, uint8_t err)
 {
-	bt_security_t sec;
+	enum bt_security sec;
 
 	switch (err) {
 	case BT_ATT_ERR_INSUFFICIENT_ENCRYPTION:
@@ -2196,7 +2196,7 @@ static uint8_t att_confirm(struct bt_att_chan *chan, struct net_buf *buf)
 static const struct att_handler {
 	uint8_t       op;
 	uint8_t       expect_len;
-	att_type_t type;
+	enum att_type type;
 	uint8_t       (*func)(struct bt_att_chan *chan, struct net_buf *buf);
 } handlers[] = {
 	{ BT_ATT_OP_MTU_REQ,
@@ -2338,7 +2338,7 @@ static const struct att_handler {
 #endif /* CONFIG_BT_GATT_CLIENT */
 };
 
-static att_type_t att_op_get_type(uint8_t op)
+static enum att_type att_op_get_type(uint8_t op)
 {
 	switch (op) {
 	case BT_ATT_OP_MTU_REQ:
