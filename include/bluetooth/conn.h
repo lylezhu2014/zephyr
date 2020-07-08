@@ -663,7 +663,7 @@ struct bt_conn *bt_conn_create_slave_le(const bt_addr_le_t *peer,
 }
 
 /** Security level. */
-enum bt_security {
+ENUM_PACKED enum bt_security {
 	/** Level 0: Only for BR/EDR special cases, like SDP */
 	BT_SECURITY_L0,
 	/** Level 1: No encryption and no authentication. */
@@ -685,7 +685,7 @@ enum bt_security {
 	 *  security level.
 	 */
 	BT_SECURITY_FORCE_PAIR = BIT(7),
-} __packed;
+} ENUM_UNPACKED;
 
 /** @brief Set security level for a connection.
  *

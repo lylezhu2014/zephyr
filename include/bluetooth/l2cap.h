@@ -56,7 +56,7 @@ typedef void (*bt_l2cap_chan_destroy_t)(struct bt_l2cap_chan *chan);
  *  Used only by internal APIs dealing with setting channel to proper state
  *  depending on operational context.
  */
-enum bt_l2cap_chan_state {
+ENUM_PACKED enum bt_l2cap_chan_state {
 	/** Channel disconnected */
 	BT_L2CAP_DISCONNECTED,
 	/** Channel in connecting state */
@@ -68,10 +68,10 @@ enum bt_l2cap_chan_state {
 	/** Channel in disconnecting state */
 	BT_L2CAP_DISCONNECT,
 
-} __packed;
+} ENUM_UNPACKED;
 
 /** @brief Status of L2CAP channel. */
-enum bt_l2cap_chan_status {
+ENUM_PACKED enum bt_l2cap_chan_status {
 	/** Channel output status */
 	BT_L2CAP_STATUS_OUT,
 
@@ -87,7 +87,7 @@ enum bt_l2cap_chan_status {
 
 	/* Total number of status - must be at the end of the enum */
 	BT_L2CAP_NUM_STATUS,
-} __packed;
+} ENUM_UNPACKED;
 
 /** @brief L2CAP Channel structure. */
 struct bt_l2cap_chan {

@@ -7,7 +7,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-enum bt_conn_state {
+ENUM_PACKED enum bt_conn_state {
 	BT_CONN_DISCONNECTED,
 	BT_CONN_DISCONNECT_COMPLETE,
 	BT_CONN_CONNECT_SCAN,
@@ -17,7 +17,7 @@ enum bt_conn_state {
 	BT_CONN_CONNECT,
 	BT_CONN_CONNECTED,
 	BT_CONN_DISCONNECT,
-} __packed;
+} ENUM_UNPACKED;
 
 /* bt_conn flags: the flags defined here represent connection parameters */
 enum {
