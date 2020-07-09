@@ -10,11 +10,11 @@
 
 #include <bluetooth/rfcomm.h>
 
-typedef enum {
+enum bt_rfcomm_cfc {
 	BT_RFCOMM_CFC_UNKNOWN,
 	BT_RFCOMM_CFC_NOT_SUPPORTED,
 	BT_RFCOMM_CFC_SUPPORTED,
-} __packed bt_rfcomm_cfc_t;
+} __packed;
 
 /* RFCOMM signalling connection specific context */
 struct bt_rfcomm_session {
@@ -27,8 +27,8 @@ struct bt_rfcomm_session {
 	struct bt_rfcomm_dlc *dlcs;
 	uint16_t mtu;
 	uint8_t state;
-	bt_rfcomm_role_t role;
-	bt_rfcomm_cfc_t cfc;
+	enum bt_rfcomm_role role;
+	enum bt_rfcomm_cfc cfc;
 };
 
 enum {

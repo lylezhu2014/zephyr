@@ -105,7 +105,7 @@ struct k_sem *bt_conn_get_pkts(struct bt_conn *conn)
 	return &bt_dev.le.pkts;
 }
 
-static inline const char *state2str(bt_conn_state_t state)
+static inline const char *state2str(enum bt_conn_state state)
 {
 	switch (state) {
 	case BT_CONN_DISCONNECTED:
@@ -1124,7 +1124,7 @@ static int start_security(struct bt_conn *conn)
 	return -EINVAL;
 }
 
-int bt_conn_set_security(struct bt_conn *conn, bt_security_t sec)
+int bt_conn_set_security(struct bt_conn *conn, enum bt_security sec)
 {
 	int err;
 
@@ -1161,12 +1161,12 @@ int bt_conn_set_security(struct bt_conn *conn, bt_security_t sec)
 	return err;
 }
 
-bt_security_t bt_conn_get_security(struct bt_conn *conn)
+enum bt_security bt_conn_get_security(struct bt_conn *conn)
 {
 	return conn->sec_level;
 }
 #else
-bt_security_t bt_conn_get_security(struct bt_conn *conn)
+enum bt_security bt_conn_get_security(struct bt_conn *conn)
 {
 	return BT_SECURITY_L1;
 }
@@ -1659,9 +1659,9 @@ static void process_unack_tx(struct bt_conn *conn)
 	}
 }
 
-void bt_conn_set_state(struct bt_conn *conn, bt_conn_state_t state)
+void bt_conn_set_state(struct bt_conn *conn, enum bt_conn_state state)
 {
-	bt_conn_state_t old_state;
+	enum bt_conn_state old_state;
 
 	BT_DBG("%s -> %s", state2str(conn->state), state2str(state));
 
@@ -1899,7 +1899,7 @@ struct bt_conn *bt_conn_lookup_addr_le(uint8_t id, const bt_addr_le_t *peer)
 }
 
 struct bt_conn *bt_conn_lookup_state_le(uint8_t id, const bt_addr_le_t *peer,
-					const bt_conn_state_t state)
+					const enum bt_conn_state state)
 {
 	int i;
 
