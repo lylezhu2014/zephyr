@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 /** @brief AVDTP SEID Information */
-struct bt_avdtp_seid_info {
+STRUCT_PACKED_PRE struct bt_avdtp_seid_info {
 	/** Stream End Point ID */
 	uint8_t id:6;
 	/** End Point usage status */
@@ -28,7 +28,7 @@ struct bt_avdtp_seid_info {
 	uint8_t tsep:1;
 	/** Reserved */
 	uint8_t rfa1:3;
-} __packed;
+} STRUCT_PACKED_POST;
 
 /** @brief AVDTP Local SEP*/
 struct bt_avdtp_seid_lsep {

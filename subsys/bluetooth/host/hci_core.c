@@ -3326,11 +3326,11 @@ static void user_passkey_req(struct net_buf *buf)
 	bt_conn_unref(conn);
 }
 
-struct discovery_priv {
+STRUCT_PACKED_PRE struct discovery_priv {
 	uint16_t clock_offset;
 	uint8_t pscan_rep_mode;
 	uint8_t resolving;
-} __packed;
+} STRUCT_PACKED_POST;
 
 static int request_name(const bt_addr_t *addr, uint8_t pscan, uint16_t offset)
 {
