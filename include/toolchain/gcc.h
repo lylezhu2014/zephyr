@@ -462,5 +462,13 @@ do {                                                                    \
 		_value_a_ < _value_b_ ? _value_a_ : _value_b_; \
 	})
 
+#ifndef ENUM_PACKED_PRE
+#define ENUM_PACKED_PRE
+#endif /* !ENUM_PACKED_PRE */
+
+#ifndef ENUM_PACKED_POST
+#define ENUM_PACKED_POST __attribute__((__packed__))
+#endif /* !ENUM_PACKED_POST */
+
 #endif /* !_LINKER */
 #endif /* ZEPHYR_INCLUDE_TOOLCHAIN_GCC_H_ */
